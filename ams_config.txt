@@ -1,0 +1,76 @@
+# Configuration file for the AMSAT Multimedia Beacon
+# ATTENTION: to configure the beacon go through ALL settings 
+# and read the comment for each single setting !!!
+
+
+# UDP_IPADDRESS is the IP address of the computer where HSmodem is running
+# if deactivated (default) then HSmodem runs on the local PC
+# tip: nothing to do, leave deactivated because everything runs on one computer
+# UDP_IPADDRESS 192.168.1.1
+
+# ----------------------------------------------
+
+# === Pluto-1 serial number ===
+# SN of the pluto used as transmitter and narrow band receiver
+# check the SN with this command: iio_info -s
+# in the beacon this will show two plutos, check which
+# one is used as transmitter and enter its SN id here
+# tip: you MUST enter the correct SN here after installation of the beacon
+PLUTO_TX_NARROWBAND 1044730a199700191f001800f3647c5341
+
+# ----------------------------------------------
+
+# === Pluto-2 serial number ===
+# SN of the pluto used as wide band receiver
+# check the SN with this command: iio_info -s
+# in the beacon this will show two plutos, check which
+# one is used as transmitter and enter its SN id here
+# tip: you MUST enter the correct SN here after installation of the beacon
+PLUTO_WIDEBAND 104473ce6991000809002b0029748935c1
+
+# ----------------------------------------------
+
+# === Beacon TX frequency ===
+# this is the transmission frequency of Pluto-1
+# this frequency is the CENTER of the beacon spectrum
+# enter the 2.4GHz frequency or another frequency in case an upconverter is used
+# enter in MHz
+# tip: this frequency MUST be set correctly before any operation
+TX_FREQ     1290.0815
+
+# ----------------------------------------------
+
+# === narrow band RX freuquency ===
+# this is the RX frequency of Pluto-1
+# it is the frequency of the lower CW beacon minus 250kHz
+# which is 10489.250 MHz minus 390 x LNB-Clock
+# Example: if the LNB runs with an external 24 MHz clock
+# then enter 10489.250 - 390*24 = 1129.25
+# enter in MHz
+# tip: this frequency MUST be set correctly before any operation
+RX_FREQ     1129.25
+
+# ----------------------------------------------
+
+# === TX power ===
+# this is the transmission power setting for Pluto-1 in dBm
+# maximum output power: 0
+# usually use something between -20 and -5
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# tip: if set to a low value then in case of a pluto crash there is a high risk to send
+# to QO100 with a high power level !
+# so its much better to use a high level here (-5 or 0 dBm) and use an external attenuator
+# to reduce the power
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TX_GAIN     -5
+
+# ----------------------------------------------
+
+# === Folder for Amsat Bulletins, Pictures... ===
+# all files in this folder are sent out cyclically
+# after sending the last file it starts from the beginning
+BULLETIN_DIRECTORY  /home/odriod/bulletin
+
+# === Bulletin Cycle Time ===
+# the next file in BULLETIN_DIRECTORY is sent every BULLETIN_CYCLETIME seconds 
+BULLETIN_CYCLETIME  60
