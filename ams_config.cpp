@@ -22,7 +22,7 @@
 
 // config file location
 // enter directory and name of the configuration file
-#define CONFIGFILE		"~/ams_config.txt"
+#define CONFIGFILE		"~/mmbeacon/hsmodemLinux/ams_config.txt"
 
 // ============= read Beacon Config file ===================
 
