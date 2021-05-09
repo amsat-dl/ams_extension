@@ -97,11 +97,27 @@ char* getConfigElement(char* elemname)
 {
     static char s[501];
     int found = 0;
-
-    FILE* fr = fopen(CONFIGFILE, "rb");
-    if (!fr)
+    char fn[1024];
+    
+    if(strlen(CONFIGFILE) > 512)
     {
-        printf("!!! Configuration file %s not found !!!\n", CONFIGFILE);
+        printf("config file path+name too long: %s\n",CONFIGFILE);
+        exit(0);
+    }
+    strcpy(fn,CONFIGFILE);
+    
+    if(fn[0] == '~')
+    {
+        struct passwd *pw = getpwuid(getuid());
+        const char *homedir = pw->pw_dir;
+        sprintf(fn,"%s%s",homedir,CONFIGFILE+1);
+    }
+
+    printf("read Configuration file %s\n",fn);
+    FILE *fr = fopen(fn,"rb");
+    if(!fr) 
+    {
+        printf("!!! Configuration file %s not found !!!\n",fn);
         exit(0);
     }
 
