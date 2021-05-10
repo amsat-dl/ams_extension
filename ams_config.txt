@@ -69,7 +69,7 @@ TX_GAIN     -5
 # === Folder for Amsat Bulletins, Pictures... ===
 # all files in this folder are sent out cyclically
 # after sending the last file it starts from the beginning
-BULLETIN_DIRECTORY  /home/odriod/bulletin
+BULLETIN_DIRECTORY  /home/odroid/bulletin
 
 # === Bulletin Cycle Time ===
 # the next file in BULLETIN_DIRECTORY is sent every BULLETIN_CYCLETIME seconds 
