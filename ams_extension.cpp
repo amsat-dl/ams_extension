@@ -367,7 +367,7 @@ void start_communication(int sck_fd) {
 			if (len < 100 && len > 50)
 			{
 				if (dxc_rxbuffer[len - 1] == '\n') dxc_rxbuffer[len - 1] = 0;
-				printf("DX Message:%d %s\n", (int)strlen(dxc_rxbuffer), dxc_rxbuffer);
+				//printf("DX Message:%d %s\n", (int)strlen(dxc_rxbuffer), dxc_rxbuffer);
 				FormatAndSendMessage(dxc_rxbuffer);
 			}
 			else
@@ -483,7 +483,7 @@ void FormatAndSendMessage(char* msg)
 	// %.n : text has max n length, if longer it will be truncuated
 	sprintf((char*)ubuf + 6, "%.20s~%.20s~%.20s~%.40s~%.20s~%.20s", reporter, qrg, dxcall, message, utctime, qthloc);
 
-	printf("<%s>\n", (char*)(ubuf + 6));
+	//printf("<%s>\n", (char*)(ubuf + 6));
 
 	sendUDP(mylocalIP, 40135, ubuf, 219);
 }
