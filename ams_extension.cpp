@@ -30,11 +30,20 @@ char* getConfigElement(char* elemname);
 int ams_sock, ams_plutosock;
 uint32_t fifostatus;
 char *mylocalIP;
+char plutoDriverIP[20] = { 0 };
 
 void ams_BCsimulation()
 {
     // read info from config file
-    char* pv = getConfigElement("BULLETIN_DIRECTORY");
+	char* pv = getConfigElement("UDP_IPADDRESS");
+	if (pv && strlen(pv))
+	{
+		memset(plutoDriverIP, 0, sizeof(plutoDriverIP));
+		strncpy(plutoDriverIP, pv, sizeof(plutoDriverIP) - 1);
+		printf("Pluto Driver IP: %s\n", plutoDriverIP);
+	}
+
+    pv = getConfigElement("BULLETIN_DIRECTORY");
     if (pv && strlen(pv))
     {
         strncpy(AUTOSENDFOLDER, pv, sizeof(AUTOSENDFOLDER) - 1);
@@ -237,7 +246,7 @@ void ams_testTX(liquid_float_complex sample)
         }
 
         //showbytestring("tx:", txbuf, SAMPperFRAME * 8, 30);
-        sendUDP("192.168.20.99", 40809, txbuf, SAMPperFRAME * 8);
+        sendUDP(plutoDriverIP, 40809, txbuf, SAMPperFRAME * 8);
 
         idx = 0;
     }
